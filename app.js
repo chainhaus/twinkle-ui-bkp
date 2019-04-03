@@ -1,26 +1,51 @@
-var firebase = require("firebase-admin");
+const express = require('express');
+const bodyParser = require('body-parser')
+const app = express();
 
-var serviceAccount = require("./serviceAccountKey.json");
+let firebase = require("firebase-admin");
+
+let serviceAccount = require("./agriledger-893ec-firebase-adminsdk-p44mc-a2be295afe.json");
+
 
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
-  databaseURL: "https://test-23cfc.firebaseio.com"
+  databaseURL: "https://agriledger-893ec.firebaseio.com/"
 });
 
-var db = firebase.database();
-var ref = db.ref("restricted_access/secret_document");
-ref.once("value", function(snapshot) {
-  console.log(snapshot.val());
+let db = firebase.database();
+
+app.use(express.static('./public'));
+app.use(bodyParser.urlencoded({}));
+app.use(bodyParser.json());
+
+
+// this is our end-pionts!!!
+app.get('/getref', (req, res) => {
+  let ref = db.ref("asset");
+  ref.once("value", function (snapshot) {
+    console.log(snapshot.val());
+    res.status(200);
+    res.send(snapshot.val());
+  });
+
+
 });
 
-var usersRef = ref.child("users");
-usersRef.set({
-  alanisawesome: {
-    date_of_birth: "June 23, 1912",
-    full_name: "Alan Turing"
-  },
-  gracehop: {
-    date_of_birth: "December 9, 1906",
-    full_name: "Grace Hopper"
-  }
+app.get('/getref2', (req, res) => {
+  let key = req.param('key');
+  console.log(key);
+  let ref2 = db.ref(`move/${key}`);
+  ref2.once("value", function (snapshot) {
+    console.log(snapshot.val());
+    res.status(200);
+    res.send(snapshot.val());
+  });
+
+
 });
+
+//run server
+app.listen(3000, () => {
+  console.log('app run on port: 3000');
+});
+

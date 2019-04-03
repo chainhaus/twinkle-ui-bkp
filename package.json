@@ -1,5 +1,5 @@
 {
-  "name": "nodejs-firebase-example",
+  "name": "nodejs-firebase-afriledger",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,16 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wahengchang/nodejs-firebase-example.git"
+    "url": "git+https://github.com/agriledger/twinkle-ui.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wahengchang/nodejs-firebase-example/issues"
-  },
-  "homepage": "https://github.com/wahengchang/nodejs-firebase-example#readme",
+  "author": "anton",
+
+  "homepage": "https://github.com/agriledger/twinkle-ui.git#readme",
   "dependencies": {
-    "firebase-admin": "^5.12.0"
+    "firebase-admin": "^5.12.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
   }
 }
