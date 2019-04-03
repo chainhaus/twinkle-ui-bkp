@@ -15,9 +15,9 @@ function makeSecondTable(arg) {
 
         let ref2 = JSON.parse(xhr.responseText);
         console.log(ref2);
-        let html = `<tr><td>KEY</td><td>latitude</td><td>longitude</td></tr>`;
+        let html = `<tr><td>date of move</td><td>latitude</td><td>longitude</td></tr>`;
         for (let prop in ref2) {
-            html += `<tr><td>${prop}</td><td>${ref2[prop].latitude}</td><td>${ref2[prop].longitude}</td></tr>`
+            html += `<tr><td>${new Date(+ prop)}</td><td>${ref2[prop].latitude}</td><td>${ref2[prop].longitude}</td></tr>`
         }
         root2.innerHTML = html;
     }
@@ -37,17 +37,15 @@ getBtn.addEventListener('click', () => {
         let ref = JSON.parse(xhr.responseText);
         console.log(ref);
         let html = `<tr>
-            <td>KEY</td><td>DATA</td><td>epochSecond</td><td>nano</td><td>OWNER</td><td>TYPE</td>
+            <td>unique identifier</td><td>data</td><td>dst</td><td>owner</td><td>type</td>
           </tr>`;
         for (let prop in ref) {
             html += `<tr onclick="makeSecondTable('${prop}')">
               <td>${prop}</td><td>${ref[prop].data}</td><td>${new Date(ref[prop].dts.epochSecond * 1000)}</td>
-              <td>${ref[prop].dts.nano}</td><td>${ref[prop].owner}</td><td>${ref[prop].type}</td>
+              <td>${ref[prop].owner}</td><td>${ref[prop].type}</td>
             </tr>`;
         }
         root.innerHTML = html;
     }
 }
 );
-
-

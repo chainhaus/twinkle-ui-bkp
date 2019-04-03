@@ -45,7 +45,8 @@ app.get('/getref2', (req, res) => {
 });
 
 //run server
-app.listen(3000, () => {
+app.listen(3000, (host) => {
+  host = '0.0.0.0'
   console.log('app run on port: 3000');
 });
 
