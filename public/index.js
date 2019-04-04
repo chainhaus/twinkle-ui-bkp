@@ -1,13 +1,15 @@
 let getBtn = document.getElementById('getTable');
 let root = document.getElementById('root');
 let root2 = document.getElementById('root2');
+let ip = '3.89.212.220'
+//let ip = 'localhost'
 
 function makeSecondTable(arg) {
     let data = null;
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", `http://localhost:3000/getref2?key=${arg}`);
+    xhr.open("GET", `http://${ip}:3000/getref2?key=${arg}`);
     xhr.setRequestHeader("cache-control", "no-cache");
 
     xhr.send(data);
@@ -28,7 +30,7 @@ getBtn.addEventListener('click', () => {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.open("GET", "http://localhost:3000/getref");
+    xhr.open("GET", `http://${ip}:3000/getref`);
     xhr.setRequestHeader("cache-control", "no-cache");
 
     xhr.send(data);
